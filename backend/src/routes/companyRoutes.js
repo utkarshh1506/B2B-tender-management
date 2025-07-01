@@ -1,6 +1,12 @@
 const express = require('express')
 const verifyToken = require('../middlewares/verifyToken')
 const { createCompany, getMyCompany, updateCompany, deleteCompany } = require('../controllers/companyController')
+const multer = require('multer')
+const path = require('path')
+const { uploadCompanyLogo } = require('../controllers/companyLogoController')
+
+const storage = multer.memoryStorage()
+const upload = multer({ storage })
 
 const router = express.Router()
 
@@ -9,5 +15,6 @@ router.post('/', verifyToken, createCompany)
 router.get('/me',verifyToken,getMyCompany)
 router.put('/:id',verifyToken, updateCompany)
 router.delete('/:id',verifyToken,deleteCompany)
+router.post('/upload-logo', verifyToken, upload.single('logo'), uploadCompanyLogo)
 
 module.exports = router
