@@ -114,3 +114,26 @@ exports.deleteCompany = async (req, res) => {
 }
 
 
+exports.searchCompanies = async (req, res) => {
+  const query = req.query.q
+
+  if (!query) {
+    return res.status(400).json({ error: 'Search query (q) is required' })
+  }
+
+  try {
+    const result = await pool.query(
+      `SELECT id, name, industry, description, logo_url
+       FROM companies
+       WHERE name ILIKE $1 OR industry ILIKE $1 OR description ILIKE $1`,
+      [`%${query}%`]
+    )
+
+    res.json({ results: result.rows })
+  } catch (err) {
+    console.error(err)
+    res.status(500).json({ error: 'Search failed' })
+  }
+}
+
+
