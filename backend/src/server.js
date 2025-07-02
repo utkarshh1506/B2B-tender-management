@@ -5,6 +5,7 @@ const authRoutes = require('./routes/authRoutes')
 const companyRoutes = require('./routes/companyRoutes')
 const companyLogoRoutes = require('./routes/companyRoutes')
 const tenderRoutes = require('./routes/tenderRoutes')
+const applicationRoutes = require('./routes/applicationRoutes')
 
 dotenv.config()
 
@@ -17,6 +18,7 @@ app.use('/api/auth', authRoutes)
 app.use('/api/companies',companyRoutes)
 app.use('/api/companies', companyLogoRoutes)
 app.use('/api/tender',tenderRoutes)
+app.use('/api/applications',applicationRoutes)
 
 const PORT = process.env.PORT || 5000
 app.listen(PORT, ()=>{
