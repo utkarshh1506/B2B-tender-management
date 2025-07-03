@@ -4,6 +4,7 @@ body{
     padding: 0px;
     font-family: Arial, Helvetica, sans-serif;
     background-color: rgb(242, 242, 242);
+    
 }
 
 main{
@@ -40,17 +41,25 @@ header a:hover{
     flex-direction: column;
 }
 
-.hero a{
+.hero button{
     margin-right: 40px;
-    padding-bottom: 40px;
-    text-decoration: none;
-    color: white;
+    color: black;
+    padding: 10px 30px;
+    border-radius: 50px;
+    border:none;
+    cursor: pointer;
+}
+.hero button:hover{
+    transform: scale(1.10);
+    background-color: #38bedd;
+    color:white;
 }
 .hero p{
     padding-bottom: 10px;
 }
 
 .info{
+    margin-top: 10px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -60,7 +69,7 @@ header a:hover{
     width: 50%;
     text-align: center;
     align-items: center;
-    margin-bottom: 83px;
+    margin-bottom: 67px;
 }
 
 footer{

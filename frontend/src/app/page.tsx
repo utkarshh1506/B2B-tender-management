@@ -1,6 +1,7 @@
 'use client'
 
 import '../app/page.css'
+import Link from 'next/link'
 
 
 export default function Home() {
@@ -22,8 +23,9 @@ export default function Home() {
         <h1 ><span>B2B Tender Management</span> Platform</h1>
         <p>A platform to manage and apply for business tenders.</p>
         <div className="hero-buttons">
-          <a href="" className='btn-primary'>Regsiter Your Company</a>
-          <a href="" className='btn-outline'>Browse Tenders</a>
+          <Link href='/signup'><button>Register Your Company</button></Link>
+          <Link href='/login'><button>Browse Tenders</button></Link>
+          
         </div>
       </section>
       <section className="info">
