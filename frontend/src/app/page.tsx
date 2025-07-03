@@ -24,7 +24,7 @@ export default function Home() {
         <p>A platform to manage and apply for business tenders.</p>
         <div className="hero-buttons">
           <Link href='/signup'><button>Register Your Company</button></Link>
-          <Link href='/login'><button>Browse Tenders</button></Link>
+          <Link href='/tenders'><button>Browse Tenders</button></Link>
           
         </div>
       </section>

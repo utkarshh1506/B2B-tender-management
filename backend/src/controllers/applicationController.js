@@ -2,7 +2,7 @@ const pool = require('../config/db')
 
 exports.submitApplication = async (req, res) => {
   const userId = req.user.userId
-  const { tenderId, proposal, proposed_budget } = req.body
+  const { tender_id, proposal, proposed_budget } = req.body
 
   try {
     const companyRes = await pool.query(
@@ -19,7 +19,7 @@ exports.submitApplication = async (req, res) => {
     // Prevent duplicate application
     const existing = await pool.query(
       'SELECT * FROM applications WHERE company_id = $1 AND tender_id = $2',
-      [companyId, tenderId]
+      [companyId, tender_id]
     )
 
     if (existing.rows.length > 0) {
@@ -30,7 +30,7 @@ exports.submitApplication = async (req, res) => {
       `INSERT INTO applications (company_id, tender_id, proposal, proposed_budget)
        VALUES ($1, $2, $3, $4)
        RETURNING *`,
-      [companyId, tenderId, proposal, proposed_budget]
+      [companyId, tender_id, proposal, proposed_budget]
     )
 
     res.status(201).json({ application: result.rows[0] })
@@ -41,7 +41,7 @@ exports.submitApplication = async (req, res) => {
 }
 
 exports.getApplicationsForTender = async (req, res) => {
-  const tenderId = req.params.tenderId
+  const tenderId = req.params.tender_id
 
   try {
     const result = await pool.query(

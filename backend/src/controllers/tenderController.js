@@ -133,4 +133,19 @@ exports.getTendersByCompany = async (req, res) => {
     res.status(500).json({ error: 'Failed to fetch company tenders' })
   }
 }
+exports.getTenderById = async (req, res) => {
+  const { id } = req.params
+  try {
+    const result = await pool.query('SELECT * FROM tenders WHERE id = $1', [id])
+    if (result.rows.length === 0) {
+      return res.status(404).json({ error: 'Tender not found' })
+    }
+    res.json({ tender: result.rows[0] })
+  } catch (err) {
+    console.error('Error fetching tender by ID:', err)
+    res.status(500).json({ error: 'Server error' })
+  }
+}
+
+
 
