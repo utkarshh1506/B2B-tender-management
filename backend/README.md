@@ -1,207 +1,82 @@
-# 📦 B2B Tender Management Backend
+# 📦 Backend - B2B Tender Management Platform
 
-A fully functional backend API for managing a B2B tender management platform. Built with **Node.js**, **Express**, **PostgreSQL**, **Supabase**, and **JWT-based authentication**.
-
----
-
-## 📑 Table of Contents
-
-* [Features](#features)
-* [Tech Stack](#tech-stack)
-* [Project Structure](#project-structure)
-* [Setup & Installation](#setup--installation)
-* [Environment Variables](#environment-variables)
-* [API Documentation](#api-documentation)
-
-  * [Authentication](#1-authentication)
-  * [Company Profile](#2-company-profile)
-  * [Tender Management](#3-tender-management)
-  * [Application Workflow](#4-application-workflow)
-  * [Search](#5-search-companies)
-* [Supabase Configuration](#supabase-configuration)
-* [Running the Server](#running-the-server)
+This is the backend service for the B2B Tender Management Platform built using Node.js, Express, and PostgreSQL.
 
 ---
 
-## ✅ Features
+## ⚙️ Tech Stack
 
-### 1. Authentication & Authorization
-
-* Sign-up / Sign-in with email and password
-* JWT token generation and validation for protected routes
-
-### 2. Company Profile
-
-* Companies can manage their profile with metadata
-* Upload and serve logos via Supabase Storage
-
-### 3. Tender Management
-
-* Companies can create, view, edit, and delete tenders
-* Public and company-specific tender views
-
-### 4. Application Workflow
-
-* Companies can submit proposals to tenders
-* View all applications for a tender
-
-### 5. Search
-
-* Search companies by name, industry, or description
+- Node.js  
+- Express.js  
+- PostgreSQL  
+- Knex.js (for migrations)  
+- JWT (Authentication)  
+- bcrypt (Password hashing)  
+- Supabase Storage (Company logos)
 
 ---
 
-## 🛠 Tech Stack
+## 🛠️ Folder Structure
 
-* Node.js
-* Express.js
-* PostgreSQL
-* Supabase (as managed Postgres + Storage)
-* JWT for auth
-* Multer for file uploads
-
----
-
-## 📁 Project Structure
-
-```
 backend/
-├── config/
-│   └── db.js                 # PostgreSQL pool setup
-├── controllers/
-│   ├── authController.js
-│   ├── companyController.js
-│   ├── tenderController.js
-│   └── applicationController.js
-├── middlewares/
-│   └── verifyToken.js
-├── routes/
-│   ├── authRoutes.js
-│   ├── companyRoutes.js
-│   ├── tenderRoutes.js
-│   └── applicationRoutes.js
-├── utils/
-│   └── supabase.js           # Supabase client
-├── server.js                 # Express server entry point
-└── .env                      # Environment variables
-```
+├── src/
+│   ├── config/         → DB configuration  
+│   ├── controllers/    → Route logic  
+│   ├── middleware/     → Auth middleware  
+│   ├── routes/         → All route definitions  
+│   └── server.js       → Entry point  
+├── Dockerfile  
+├── .env  
+└── package.json
 
 ---
 
-## ⚙️ Setup & Installation
+## 📋 Available APIs
 
-```bash
-# Clone the repository
-$ git clone <repo-url>
-$ cd backend
+### Authentication
+POST   /api/signup       → Register new user  
+POST   /api/login        → Login and get token  
 
-# Install dependencies
-$ pnpm install
+### Company Profile
+GET    /api/profile      → Get company profile  
+PUT    /api/profile      → Update company profile  
 
-# Create .env file
-$ cp .env.example .env
+### Tenders
+POST   /api/tender       → Create a new tender  
+GET    /api/tender       → Get all tenders (paginated)  
+GET    /api/tender/:id   → Get single tender  
 
-# Start development server
-$ pnpm dev
-```
+### Applications
+POST   /api/tender/:id/apply   → Apply to a tender  
+GET    /api/applications       → Get all applications for a company  
 
 ---
 
 ## 🔐 Environment Variables
 
-`.env`
-
-```
-PORT=3000
-SUPABASE_URL=https://your-project.supabase.co
-SUPABASE_KEY=your-service-role-key
-JWT_SECRET=your_jwt_secret_key
-```
-
-> Use Supabase **service\_role key** for server-side operations like uploads.
+PORT=3001  
+DATABASE_URL=postgres://...  
+JWT_SECRET=your_secret  
+SUPABASE_URL=...  
+SUPABASE_KEY=...
 
 ---
 
-## 📌 API Documentation
+## 📦 Docker Commands
 
-### 🔐 1. Authentication
+# Build backend image
+docker build -t b2b-backend .
 
-| Endpoint         | Method | Description       |
-| ---------------- | ------ | ----------------- |
-| /api/auth/signup | POST   | Register new user |
-| /api/auth/login  | POST   | Login & get token |
-
-### 🏢 2. Company Profile
-
-| Endpoint                    | Method | Description                 |
-| --------------------------- | ------ | --------------------------- |
-| /api/companies              | POST   | Create company profile      |
-| /api/companies/me           | GET    | Get current user's company  |
-| /api/companies/\:id         | PUT    | Update company              |
-| /api/companies/\:id         | DELETE | Delete company              |
-| /api/companies/upload-logo  | POST   | Upload company logo         |
-| /api/companies/search?q=... | GET    | Search by name/industry/etc |
-
-### 📋 3. Tender Management
-
-| Endpoint                         | Method | Description                  |
-| -------------------------------- | ------ | ---------------------------- |
-| /api/tenders                     | POST   | Create tender                |
-| /api/tenders                     | GET    | Get my tenders               |
-| /api/tenders/\:id                | PUT    | Update tender                |
-| /api/tenders/\:id                | DELETE | Delete tender                |
-| /api/tenders/all?page=1\&limit=5 | GET    | Public paginated tender list |
-| /api/tenders/company/\:id        | GET    | Tenders by company           |
-
-### 📨 4. Application Workflow
-
-| Endpoint                            | Method | Description                    |
-| ----------------------------------- | ------ | ------------------------------ |
-| /api/applications                   | POST   | Submit application to a tender |
-| /api/applications/tender/\:tenderId | GET    | View applications for a tender |
-
-### 🔍 5. Search Companies
-
-| Endpoint                     | Method | Description                    |
-| ---------------------------- | ------ | ------------------------------ |
-| /api/companies/search?q=term | GET    | Search by name, industry, etc. |
+# Run locally
+docker run -p 3001:3001 b2b-backend
 
 ---
 
-## 🧾 Supabase Configuration
+## 🧪 Testing
 
-### ✅ Storage
-
-* Bucket name: `company-logos`
-* Public: `true`
-* RLS Policy: Allow `service_role` to upload
-
-### ✅ Database Tables Created
-
-```sql
-users(id, email, password)
-companies(id, user_id, name, description, industry, logo_url)
-tenders(id, title, description, deadline, budget, user_id, company_id)
-applications(id, company_id, tender_id, proposal, proposed_budget)
-```
+Use Postman or Thunder Client to test all routes.
 
 ---
 
-## ▶️ Running the Server
-
-```bash
-pnpm dev
-```
-
-The server will start on `http://localhost:3000`
-
----
-
-## ✅ Final Notes
-
-* All protected routes require JWT token via `Authorization: Bearer <token>`
-* One company per user is assumed
-* One proposal per company per tender is enforced
-* All image uploads go to Supabase and return a public URL
-
----
+Made with ❤️ by Utkarsh Singh  
+https://github.com/utkarshh1506
