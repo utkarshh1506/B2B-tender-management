@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import "./page.css";
+
 type Application = {
   id: number;
   tender_id: number;
@@ -111,21 +112,25 @@ const Dashboard = () => {
           />
         )}
         <h2>{company?.name}</h2>
-        <button onClick={() => router.push("/company/edit")}>
-          Edit Profile
-        </button>
-        <button onClick={() => router.push("/dashboard/applications")}>
-          My Applications
-        </button>
-        <button onClick={() => router.push("/tenders")}>Browse Tenders</button>
-        <button
-          onClick={() => {
-            localStorage.removeItem("token");
-            router.push("/login");
-          }}
-        >
-          Logout
-        </button>
+        <ul>
+          <li onClick={() => router.push("/")}>Home</li>
+          <li onClick={() => router.push("/dashboard")}>Dashboard</li>
+          <li onClick={() => router.push("/dashboard/edit-profile")}>
+            Edit Profile
+          </li>
+          <li onClick={() => router.push("/dashboard/applications")}>
+            My Applications
+          </li>
+          <li onClick={() => router.push("/tenders")}>Browse Tenders</li>
+          <li
+            onClick={() => {
+              localStorage.removeItem("token");
+              router.push("/login");
+            }}
+          >
+            Logout
+          </li>
+        </ul>
       </aside>
 
       <main className="dashboard-main">

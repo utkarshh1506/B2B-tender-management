@@ -1,81 +1,62 @@
-body{
-    margin: 0px;
-    height: 100%;
-    padding: 0px;
-    font-family: Arial, Helvetica, sans-serif;
-    background-color: rgb(242, 242, 242);
-    
+/* Apply to all pages */
+body,
+html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
 }
 
-main{
-    min-height: 100%;
-    display: flex;
-    flex-direction:column ;
+main {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
-header{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 16px 24px;
+.hero {
+  flex: 1;
+  background-color: #6ca0ff;
+  padding: 40px 0;
+  text-align: center;
+  color: white;
 }
 
-header a{
-    margin-left: 40px;
-    text-decoration: none;
-    color: black;
+.hero-buttons {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
 }
 
-header a:hover{
-    color: #2563eb;
+.hero-buttons button {
+  background-color: white;
+  color: black;
+  border: none;
+  border-radius: 20px;
+  padding: 10px 20px;
+  cursor: pointer;
 }
 
-.hero{
-    background-color:#6490ee;
-    color: white;
-    padding: 10px 24px 40px;
+.info {
+  flex: 1;
+  padding: 40px 20px;
+  text-align: center;
 }
 
-.hero h1{
-    display: flex;
-    flex-direction: column;
+footer {
+  margin-top: auto;
+  background-color: #625f5f8c;
+  padding: 5px;
+  text-align: center;
 }
 
-.hero button{
-    margin-right: 40px;
-    color: black;
-    padding: 10px 30px;
-    border-radius: 50px;
-    border:none;
-    cursor: pointer;
-}
-.hero button:hover{
-    transform: scale(1.10);
-    background-color: #38bedd;
-    color:white;
-}
-.hero p{
-    padding-bottom: 10px;
+.header {
+  position: absolute;
+  top: 20px;
+  right: 20px;
 }
 
-.info{
-    margin-top: 10px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-.info p{
-    width: 50%;
-    text-align: center;
-    align-items: center;
-    margin-bottom: 67px;
-}
-
-footer{
-    margin-top: auto;
-    text-align: center;
-    background-color: #625f5f8c;
-    padding:5px;
-
+.header a {
+  margin-left: 10px;
+  text-decoration: none;
+  color: #333;
 }

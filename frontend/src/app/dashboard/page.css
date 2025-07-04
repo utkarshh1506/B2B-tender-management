@@ -14,7 +14,7 @@ body{
 .sidebar {
   width: 220px;
   padding: 20px;
-  background-color: #1e293b;
+  background-color: #1e3a8a;
   color: white;
   display: flex;
   flex-direction: column;
@@ -68,5 +68,23 @@ body{
   flex: 1;
   min-width: 200px;
   font-size: 18px;
+}
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar ul li {
+  margin: 12px 0;
+  cursor: pointer;
+  padding: 6px 0;
+  border-radius: 4px;
+  transition: background 0.2s ease-in-out;
+}
+
+.sidebar ul li:hover {
+  background-color: #3b82f6;
+  padding-left: 4px;
+  width: 100%;
 }
 

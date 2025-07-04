@@ -57,7 +57,7 @@ exports.getMyCompany = async(req,res)=>{
 exports.updateCompany = async (req, res) => {
   const companyId = req.params.id
   const userId = req.user.userId
-  const { name, description, industry, logo_url } = req.body
+  const { name, description, industry } = req.body
 
   try {
     // 1. Verify ownership
@@ -73,9 +73,9 @@ exports.updateCompany = async (req, res) => {
     // 2. Update
     await pool.query(
       `UPDATE companies 
-       SET name = $1, description = $2, industry = $3, logo_url = $4, updated_at = NOW()
-       WHERE id = $5`,
-      [name, description, industry, logo_url, companyId]
+       SET name = $1, description = $2, industry = $3,updated_at = NOW()
+       WHERE id = $4`,
+      [name, description, industry, companyId]
     )
 
     res.json({ message: 'Company updated successfully' })
