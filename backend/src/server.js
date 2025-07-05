@@ -11,7 +11,10 @@ dotenv.config()
 
 
 const app = express();
-app.use(cors())
+app.use(cors({
+  origin: ['https://b2-b-tender-management-dykjgj9f6.vercel.app/'], 
+  credentials: true
+}));
 app.use(express.json())
 app.use(cors({ origin: 'http://localhost:3000' }));
 
