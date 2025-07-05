@@ -49,13 +49,13 @@ const Dashboard = () => {
     const fetchData = async () => {
       try {
         const [companyRes, appsRes, tendersRes] = await Promise.all([
-          fetch("http://localhost:3001/api/companies/me", {
+          fetch("https://b2b-tender-management.onrender.com/api/companies/me", {
             headers: { Authorization: `Bearer ${token}` },
           }),
-          fetch("http://localhost:3001/api/applications/me", {
+          fetch("https://b2b-tender-management.onrender.com/api/applications/me", {
             headers: { Authorization: `Bearer ${token}` },
           }),
-          fetch("http://localhost:3001/api/tender/all"),
+          fetch("https://b2b-tender-management.onrender.com/api/tender/all"),
         ]);
         if (!companyRes.ok)
           console.error("❌ /companies/me failed", companyRes.status);

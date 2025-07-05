@@ -27,7 +27,7 @@ export default function EditProfile() {
 
   useEffect(() => {
     const token = localStorage.getItem("token");
-    fetch("http://localhost:3001/api/companies/me", {
+    fetch("https://b2b-tender-management.onrender.com/api/companies/me", {
       headers: { Authorization: `Bearer ${token}` },
     })
       .then((res) => res.json())
@@ -50,7 +50,7 @@ export default function EditProfile() {
       const form = new FormData();
       form.append("logo", logoFile);
       const res = await fetch(
-        "http://localhost:3001/api/companies/upload-logo",
+        "https://b2b-tender-management.onrender.com/api/companies/upload-logo",
         {
           method: "POST",
           headers: { Authorization: `Bearer ${token}` },
@@ -63,7 +63,7 @@ export default function EditProfile() {
 
     const logo_url = await uploadLogo();
 
-    await fetch(`http://localhost:3001/api/companies/${company?.id}`, {
+    await fetch(`https://b2b-tender-management.onrender.com/api/companies/${company?.id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",

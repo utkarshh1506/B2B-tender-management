@@ -26,7 +26,7 @@ export default function TendersPage() {
     setIsLoggedIn(!!token);
 
     // Fetch tenders
-    fetch("http://localhost:3001/api/tender/all")
+    fetch("https://b2b-tender-management.onrender.com/api/tender/all")
       .then((res) => res.json())
       .then((data) => {
         setTenders(data.tenders || []);

@@ -32,10 +32,10 @@ export default function ApplicationsPage() {
     const fetchData = async () => {
       try {
         const [companyRes, appsRes] = await Promise.all([
-          fetch("http://localhost:3001/api/companies/me", {
+          fetch("https://b2b-tender-management.onrender.com/api/companies/me", {
             headers: { Authorization: `Bearer ${token}` },
           }),
-          fetch("http://localhost:3001/api/applications/me", {
+          fetch("https://b2b-tender-management.onrender.com/api/applications/me", {
             headers: { Authorization: `Bearer ${token}` },
           }),
         ]);

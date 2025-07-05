@@ -26,7 +26,7 @@ export default function TenderDetailPage() {
     const token = localStorage.getItem('token')
     if (!token) router.push('/login')
 
-    fetch(`http://localhost:3001/api/tender/${id}`, {
+    fetch(`https://b2b-tender-management.onrender.com/api/tender/${id}`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -59,7 +59,7 @@ export default function TenderDetailPage() {
     })
 
     try {
-      const res = await fetch('http://localhost:3001/api/applications', {
+      const res = await fetch('https://b2b-tender-management.onrender.com/api/applications', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
